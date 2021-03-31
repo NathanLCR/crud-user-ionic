@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nome:</ion-label>
+    <ion-input [(ngModel)]="user.nome"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Telefone:</ion-label>
+    <ion-input type ="number" [(ngModel)]="user.telefone" placeholder="(99)99999-9999" [size]="11"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Email:</ion-label>
+    <ion-input type="email" 
+      name="email" 
+      [(ngModel)]="user.email"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Data Nascimento:</ion-label>
+    <ion-datetime [(ngModel)]="user.dataNascimento" 
+      displayFormat="DD MM YYYY" 
+    ></ion-datetime>
+  </ion-item> 
+  
+  <ion-button expand="block" (click)="post()" >{{labelButao}}</ion-button>
+
+  <ion-item *ngFor="let user of users" >
+    <ion-avatar slot="start">
+      <img [src]="user.avatar">
+    </ion-avatar>
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col>{{user.nome}}</ion-col>
+        <ion-col>{{user.telefone}}</ion-col>
+        
+      </ion-row>
+      <ion-row>
+        <ion-col>{{user.email}}</ion-col>
+        <ion-col>
+          <ion-datetime [value]="user.dataNascimento" 
+          disabled="true"
+          displayFormat="DD MM YYYY" 
+          ></ion-datetime>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="deletar(user.id)" color="danger">Deletar</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="editar(user)">Editar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid> 
+  </ion-item>
+</ion-content>
